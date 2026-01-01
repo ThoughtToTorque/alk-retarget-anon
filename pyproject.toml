@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alk-retarget"
+version = "0.1.0"
+description = "One-shot contact-rich manipulation via keypoint-anchored retargeting: method, simulation benchmark and baselines"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+authors = [
+    { name = "Anonymous Author", email = "anonymous@anonymous.invalid" },
+    { name = "Anonymous Author", email = "anonymous@anonymous.invalid" },
+    { name = "Anonymous Author", email = "anonymous@anonymous.invalid" },
+    { name = "Anonymous Author", email = "anonymous@anonymous.invalid" },
+    { name = "Anonymous Author", email = "anonymous@anonymous.invalid" },
+    { name = "Anonymous Author", email = "anonymous@anonymous.invalid" },
+]
+keywords = [
+    "robot manipulation",
+    "one-shot imitation",
+    "keypoints",
+    "point cloud registration",
+    "robosuite",
+    "mujoco",
+    "benchmark",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Core: the method (numpy/scipy only), the simulation task suite
+# (robosuite/mujoco/imageio) and the demo figure (matplotlib).
+# NOTE: robosuite and mujoco are pinned to the versions the paper's
+# campaigns were run on.  Scene generation is seed-deterministic *within* a
+# version pair; a different robosuite/mujoco may sample different scenes.
+dependencies = [
+    "numpy>=1.21",
+    "scipy>=1.7",
+    "robosuite==1.4.1",
+    "mujoco==3.2.3",
+    "imageio>=2.9",
+    "matplotlib>=3.3",
+]
+
+[project.optional-dependencies]
+# Only needed for the real-VLM path (docs/VLM_SETUP.md): the OpenAI-compatible
+# client for a local vLLM server, and torch for the ReKep DINOv2 keypoint
+# proposal.  NOTHING in demo/ needs any of this.
+vlm = [
+    "openai>=1.0",
+    "torch>=1.11",
+]
+dev = [
+    "pytest>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ThoughtToTorque/alk-retarget-anon"
+
+[tool.setuptools]
+packages = ["alkbench", "simtasks", "baselines", "pipeline", "stats"]
+
+[tool.setuptools.package-data]
+baselines = ["testdata/**/*"]
+simtasks = ["TASKS.md"]
+alkbench = ["NOTES.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

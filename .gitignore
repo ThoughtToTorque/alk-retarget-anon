@@ -1,0 +1,20 @@
+# generated scene-pair caches (regenerated from seeds; never committed)
+/data/
+/data_mini/
+/data_medium*/
+# rollout records, tables and demo output
+/results/
+/demo_out/
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.tox/
+# mujoco / robosuite droppings
+MUJOCO_LOG.TXT
+*.bak

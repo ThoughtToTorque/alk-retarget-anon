@@ -1,0 +1,7 @@
+{
+  "task": "nut_loosen",
+  "success": true,
+  "n_steps": 330,
+  "n_waypoints": 4,
+  "n_keyframes": 3
+}
